@@ -1,9 +1,10 @@
-const { db } = require("../lib/utils/mongo_root");
-const [getRoomsByHome] = require("./room");
-const COLLECTION_NAME = "homes";
+const { db } = require('../lib/utils/mongo_root');
+const [getRoomsByHome] = require('./room');
+const COLLECTION_NAME = 'homes';
 
 async function getHomes() {
   const homes = await db().collection(COLLECTION_NAME).find({}).toArray();
+  console.log(homes);
   return homes;
 }
 

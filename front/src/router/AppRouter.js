@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { HomesList } from "../pages/homes-list/HomesList";
-import { Navbar } from "../components/nav/Navbar";
-import { IntlProvider } from "react-intl";
-import { LOCALES } from "../i18n/locales";
-import messages from "../i18n/messages";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HomesList } from '../pages/homes-list/HomesList';
+import { HomeDetail } from '../pages/home-detail/Home-detail';
+import { Navbar } from '../components/nav/Navbar';
 
 export const AppRouter = () => {
-  const [language, setLanguage] = useState(LOCALES.ENGLISH);
-
   return (
-    <IntlProvider locale={language} messages={messages[language]}>
-      <Router>
-        <Navbar setLanguage={setLanguage}></Navbar>
-        <Switch>
-          <Route exact path="/">
-            <HomesList />
-          </Route>
-          <Route exact path="/homes">
-            <HomesList />
-          </Route>
-        </Switch>
-      </Router>
-    </IntlProvider>
+    <Router>
+      <Navbar setLanguage={'en'}></Navbar>
+      <Switch>
+        <Route exact path='/'>
+          <HomesList />
+        </Route>
+        <Route exact path='/homes'>
+          <HomesList />
+        </Route>
+        <Route exact path='/homes/:id'>
+          <HomeDetail />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
